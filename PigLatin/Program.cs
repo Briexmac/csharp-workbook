@@ -1,49 +1,40 @@
-﻿using System;
+﻿
+using System;
 
 namespace PigLatin
 {
-    class Program
-    {
-        public static void Main()
-        {
-            // your code goes here
-            string word = "";
-            Console.WriteLine("Enter a word or sentence?");
-            word = Console.ReadLine();
-            Console.WriteLine(TranslateWord(word.ToLower()));
-            // leave this command at the end so your program does not close automatically
-            
-            Console.ReadLine();
-        }
-        
-        public static string TranslateWord(string word)
-        {
-            // your code goes here
-            int firstVowel = word.IndexOfAny(new char[] {'a', 'e', 'i', 'o', 'u'});
+	class Program
+	{
+		public static void Main()
+		{
+			// your code goes here
+			Console.WriteLine("Please enter a word or sentence to translate into PigLatin.");
+			string input = Console.ReadLine();
 
-            string partOne = word.Substring(0,firstVowel);
-            string partTwo = word.Substring(firstVowel);
-            word = word.ToLower();
+			string [] words = input.Split(' ');
+			foreach (string word in words)
+			{
+				Console.WriteLine(TranslateWord(word));
+			}
+		}
+		
+		public static string TranslateWord(string word)
+		{
+			word = word.ToLower();
+			int firstVowelIndex = word.IndexOfAny(new char[]{'a', 'e', 'i', 'o', 'u', 'y'});
+			// leave this command at the end so your program does not close automatically
+			if(firstVowelIndex <= 0)
+			{
+				return word + "yay";
+			}
+			else
+			{
+				string firstPart = word.Substring(0, firstVowelIndex);
+				string secondPart = word.Substring(firstVowelIndex);
 
-            if (firstVowel == 0)
-            {
-                return word + "yay";
-            }
-            else
-            {
-                return partTwo + partOne + "ay";
-            }
+				return secondPart + firstPart + "ay";
+			}
+		}
 
-            // string[] words = word.Split(' ');
-            // string[] sentence = new string[] {};
-            // for (int i =0; i < words.Length; i++)
-            // {
-            //     upperCaseWords[i] = words[i].ToUpper();
-            // }
-            // string upperCaseWords = string.Join(' ', upperCaseWords);
-
-            return firstVowel.ToString();
-            return word;
-        }
-    }
+	}
 }
