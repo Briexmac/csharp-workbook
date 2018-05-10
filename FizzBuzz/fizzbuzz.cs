@@ -7,7 +7,7 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("What's the limit of FizzBuzz number?");
+            System.Console.WriteLine("FizzBuzz up to what number?");
             int limit = int.Parse(Console.ReadLine());
             for (int i = 1; i <= limit; i++)
             {
