@@ -14,7 +14,8 @@
             "args": [],
             "cwd": "${fileDirname}",
             "stopAtEntry": false,
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "requireExactSource": false
         }
     ]
 }
