@@ -11,6 +11,7 @@ namespace Checkpoint1
             Factorial();
             Guess();
             FindMax();
+            Console.WriteLine("Hello world!");
         }
 
         static public void DivByThree() 

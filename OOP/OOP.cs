@@ -1,87 +1,142 @@
 ﻿using System;
+using System.Collections.Generic;
 
-public class Program
+namespace OOP
 {
-	public static void Main()
-	{
-		Person leia = new Person("Leia", "Organa", "Rebel");
-		Person darth = new Person("Darth", "Vader", "Imperial");
-		Ship falcon = new Ship("Rebel", "Smuggling", 2);
-		Ship tie = new Ship("Tie", "Fighter", 1);
-		Console.WriteLine("Hello world!");
-	}
-}
+					
+    public class Program
+    {
+        public static void Main()
+        {
+            List<Person> people1 = new List<Person>()
+            { 
+                new Person("Beckett"),
+                new Person("Lee"),
+                new Person("Benton")
+            };
+            List<Person> people2 = new List<Person>()
+            { 
+                new Person("James"),
+                new Person("Max")
+            };
+            List<Person> people3 = new List<Person>()
+            { 
+                new Person("Chase"),
+                new Person("Gary")
+            };
+            Car blueCar = new Car("blue", 5, people1);
+            Console.WriteLine(blueCar.PeopleReport());
+            blueCar.PutPeopleInCar(people2); 
+            blueCar.PeopleReport();
+            Car greyCar = new Car("grey", 2, people3);
+            Garage smallGarage = new Garage(2);
+            smallGarage.ParkCar(blueCar, 0);
+            smallGarage.ParkCar(greyCar, 1);
+            Console.WriteLine(smallGarage.Cars);
+            Console.WriteLine("");
+        }
+    }
 
-class Person
-{
-	private string firstName;
-	private string lastName;
-	private string alliance;
-	public Person(string firstName, string lastName, string alliance)
-	{
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.alliance = alliance;
-	}
+    class Car
+    {
+        private List<Person> people;
+        
+        public Car(string initialColor, int size, List<Person> initialPeople)
+        {
+            Color = initialColor;
+            Size = size;
+            People = initialPeople;
+        }
+        
+        public string Color { get; private set; }
 
-	public string FullName
-	{
-		get
-		{
-			return this.firstName + " " + this.lastName;
-		}
+        public List<Person> People 
+        { 
+            get {
+                return people;
+            }
+            private set {
+                people = value;
+            }
+        }
 
-		set
-		{
-			string[] names = value.Split(' ');
-			this.firstName = names[0];
-			this.lastName = names[1];
-		}
-	}
-}
 
-class Ship
-{
-	private Person[] passengers;
-	public Ship(string alliance, string type, int size)
-	{
-		this.Type = type;
-		this.Alliance = alliance;
-		this.passengers = new Person[size];
-	}
+        public int Size { get; private set; }
 
-	public string Type
-	{
-		get;
-		set;
-	}
+        public string PeopleReport()
+        {
+            string driverAndPassengers = $"\nPeople in {Color} car: ";
+            for (int i = 0; i < People.Count; i ++)
+            {
+                if (people[i] != null)
+                {
+                    driverAndPassengers += People[i].Name;
+                    if (i < people.Count - 1 && People[i + 1] != null)
+                    {
+                        driverAndPassengers += ", ";
+                    }
+                }
+            }
+            return driverAndPassengers;
+        }
 
-	public string Alliance
-	{
-		get;
-		set;
-	}
+        public void PutPeopleInCar(List<Person> people)
+        {
+            for (int i = 0; i < people.Count; i ++)
+            {
+                if (People.Count < Size)
+                {
+                    People.Add(people[i]); 
+                }
+            }
+        }
+    }
 
-	public string Passengers
-	{
-		get
-		{
-			foreach (var person in passengers)
-			{
-				Console.WriteLine(String.Format("{0}", person.FullName));
-			}
+    class Garage
+    {
+        private Car[] cars;
+        
+        public Garage(int initialSize)
+        {
+            Size = initialSize;
+            this.cars = new Car[initialSize];
+        }
+        
+        public int Size { get; private set; }
+        
+        public void ParkCar (Car car, int spot)
+        {
+            cars[spot] = car;
+        }
+        
+        public string Cars {
+            get 
+            {
+                string report = "";
+                for (int i = 0; i < cars.Length; i++)
+                {
+                    if (cars[i] != null) 
+                    {
+                        report += String.Format("\nThe {0} car is in spot {1}", cars[i].Color, i);
+                        if (cars[i].People != null)
+                        {
+                            report += cars[i].PeopleReport() + "\n";
+                        }
+                    }
+                }
+                report += "\n--End of Report--";
+                return report;
+            }
+        }
+    }
 
-			return "That's Everybody!";
-		}
-	}
+    class Person
+    {
+        public Person(string name)
+        {
+            Name = name;
+        }
 
-	public void EnterShip(Person person, int seat)
-	{
-		this.passengers[seat] = person;
-	}
-
-	public void ExitShip(int seat)
-	{
-		this.passengers[seat] = null;
-	}
+        public string Name { get; private set; }
+    }
 }

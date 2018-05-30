@@ -8,30 +8,56 @@ namespace Checkers
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Hello World!");
         }
     }
 
     public class Checker
     {
-        public string Symbol  { get; set; }
+        public string Symbol  
+        { 
+            get
+            {
+                return Symbol;
+            } 
+            set
+            {
+                Symbol = value;
+            } 
+        }
         public int[] Position  { get; set; }
         public string Color { get; set; }
         
         public Checker(string color, int[] position)
         {
-            // Your code here
+            Color = color; 
+            Position = position;
+            if (Color == "white")
+            {
+                int openCircleId = int.Parse("25CB", System.Globalization.NumberStyles.HexNumber);
+                string openCircle = char.ConvertFromUtf32(openCircleId);
+                Symbol = openCircle;
+            }
+            else
+            {
+                int closedCircleId = int.Parse("25CF", System.Globalization.NumberStyles.HexNumber);
+                string closedCircle = char.ConvertFromUtf32(closedCircleId);
+                Symbol = closedCircle;
+            }
         }
     }
 
     public class Board
     {
-        public string[][] Grid  { get; set; }
-        public List<Checker> Checkers { get; set; }
-        
+        private List<Checker> checkers = new List<Checker>();
+        public static int[,] whitePosition = new int[12,2];
+        private static int[,] blackPosition = new int[12, 2];
+
+
         public Board()
         {
-            // Your code here
+         
             return;
         }
         
