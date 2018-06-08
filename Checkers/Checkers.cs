@@ -37,28 +37,28 @@ public class Board
     public List<Checker> Checkers { get; set; }
     int[][] whitePosition = new int[][]
     {
-        new int[] { 0, 1 },
-        new int[] {0, 3 },
-        new int[] {0, 5 },
-        new int[] {0, 7 },
-        new int[] {1, 0 },
-        new int[] {1, 2 },
-        new int[] {1, 4 },
-        new int[] { 1, 6 },
-        new int[] {2, 1 },
-        new int[] {2, 3 },
-        new int[] {2, 5 },
-        new int[] {2, 7 },
+        new int[] {0, 1},
+        new int[] {0, 3},
+        new int[] {0, 5},
+        new int[] {0, 7},
+        new int[] {1, 0},
+        new int[] {1, 2},
+        new int[] {1, 4},
+        new int[] {1, 6},
+        new int[] {2, 1},
+        new int[] {2, 3},
+        new int[] {2, 5},
+        new int[] {2, 7},
     };
 
     // position of black checkers
     int[][] blackPosition = new int[][]
     {
-       new int[] { 5, 0 },
-       new int[] {5, 2 },
-       new int[] {5, 4 },
-       new int[] {5, 6 },
-       new int[] {6, 1 },
+       new int[] {5, 0},
+       new int[] {5, 2},
+       new int[] {5, 4},
+       new int[] {5, 6},
+       new int[] {6, 1},
        new int[] {6, 3},
        new int[] {6, 5},
        new int[] {6, 7},
