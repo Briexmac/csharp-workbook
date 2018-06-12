@@ -48,7 +48,6 @@ namespace RainForest
             this.name = name;
             this.warehouses = new List<Warehouse> ();
         }
-
         public void GenerateManifest () 
         {
             string html = @"
