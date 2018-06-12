@@ -41,11 +41,11 @@ namespace OOP
     {
         private List<Person> people;
         
-        public Car(string initialColor, int size, List<Person> initialPeople)
+        public Car(string startColor, int size, List<Person> startPeople)
         {
-            Color = initialColor;
+            Color = startColor;
             Size = size;
-            People = initialPeople;
+            People = startPeople;
         }
         
         public string Color { get; private set; }
@@ -96,10 +96,10 @@ namespace OOP
     {
         private Car[] cars;
         
-        public Garage(int initialSize)
+        public Garage(int startSize)
         {
-            Size = initialSize;
-            this.cars = new Car[initialSize];
+            Size = startSize;
+            this.cars = new Car[startSize];
         }
         
         public int Size { get; private set; }
