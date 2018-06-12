@@ -12,11 +12,11 @@ namespace TowersOfHanoi
             Disc fifteen = new Disc(15);
             Disc twenty = new Disc(20); 
             Disc[] initialStack = { twenty, fifteen, ten, five };
-            Rod rodOne = new Rod(initialStack, "1");
-            Rod rodTwo = new Rod(new Disc[4], "2");
-            Rod rodThree = new Rod(new Disc[4], "3");
-            Rod fromRod = null;
-            Rod toRod = null;
+            Stick rodOne = new Stick(initialStack, "1");
+            Stick rodTwo = new Stick(new Disc[4], "2");
+            Stick rodThree = new Stick(new Disc[4], "3");
+            Stick fromStick = null;
+            Stick toStick = null;
 
             Console.WriteLine("");
             rodOne.reportDiscs();
@@ -29,27 +29,27 @@ namespace TowersOfHanoi
                 string from = Console.ReadLine();
                 Console.WriteLine("Move to? (Enter 1, 2 or 3)");
                 string to = Console.ReadLine();
-                Rod [] rods = { rodOne, rodTwo, rodThree };
-                foreach (Rod rod in rods)
+                Stick [] rods = { rodOne, rodTwo, rodThree };
+                foreach (Stick stickin rods)
                 {
-                    if (rod.Number == from)
+                    if (stick.Number == from)
                     {
-                       fromRod = rod; 
+                       fromStick = stick; 
                     }
-                    if (rod.Number == to)
+                    if (stick.Number == to)
                     {
-                        toRod = rod;
+                        toStick = stick;
                     }
                 }
-                if (fromRod != null && toRod != null)
+                if (fromStick != null && toStick != null)
                 {
-                    fromRod.checkAndMove(toRod);
-                    fromRod = null;
-                    toRod = null;
+                    fromStick.checkAndMove(toStick);
+                    fromStick = null;
+                    toStick = null;
                 }
                 else
                 {
-                    Rod.printErrorMessage();        
+                    Stick.printErrorMessage();        
                 }
                 rodOne.reportDiscs();
                 rodTwo.reportDiscs();
@@ -59,14 +59,14 @@ namespace TowersOfHanoi
         }
     }
 
-    class Rod 
+    class Stick 
     {
         public static void printErrorMessage()
         {
             Console.WriteLine("\nTry again!\n");
         }
 
-        public Rod(Disc[] initialStack, string num)
+        public Stick(Disc[] initialStack, string num)
         {
             Number = num;
             Stack = initialStack;
@@ -79,14 +79,14 @@ namespace TowersOfHanoi
 
         public bool WinFlag { get; private set; }
 
-        public void checkAndMove(Rod dest)
+        public void checkAndMove(Stick dest)
         { 
             if (this.Stack[0] != null)
             {
                 Disc md = this.MoveDisc(dest);
                 if (md != null)
                 {
-                    Console.WriteLine($"\nMoved size {md.Size} disc to rod {dest.Number}\n");
+                    Console.WriteLine($"\nMoved size {md.Size} disc to stick{dest.Number}\n");
                     if (dest.checkForWin())
                     {
                         dest.WinFlag = true;
@@ -97,7 +97,7 @@ namespace TowersOfHanoi
             printErrorMessage(); 
         }
 
-        private Disc MoveDisc(Rod dest)
+        private Disc MoveDisc(Stick dest)
         {
             Disc moved = new Disc(0);
             int i;
@@ -132,7 +132,7 @@ namespace TowersOfHanoi
 
         public void reportDiscs()
         {   
-            Console.Write($"Rod {this.Number}: ");
+            Console.Write($"Stick {this.Number}: ");
             if (this.Stack[0] != null)
             {
                 foreach (Disc disc in this.Stack)
