@@ -22,10 +22,10 @@ namespace StarWars
             falcon.EnterShip(leia, 1);
             falcon.EnterShip(luke, 2);
             tie.EnterShip(palpatine, 0);
-            Ship[] initialDSShips = { tie, dtie };
-            Ship[] initialRSShips = { falcon, xwing };
-            Station deathStar = new Station("Death Star", "Imperial", 5, initialDSShips);
-            Station rebelSpaceStation = new Station("Rebel Space Station", "Alliance", 2, initialRSShips);
+            Ship[] dsShips = { tie, dtie };
+            Ship[] rsShips = { falcon, xwing };
+            Station deathStar = new Station("Death Star", "Imperial", 5, dsShips);
+            Station rebelSpaceStation = new Station("Rebel Space Station", "Alliance", 2, rsShips);
             deathStar.Roster();
             rebelSpaceStation.Roster();
 
